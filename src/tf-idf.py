@@ -3,7 +3,6 @@
 #Importing necessary libraries
 import math
 
-
 #Function to compute Term Frequency
 def computeTF(wordDict):
         tfDict = {}
@@ -13,7 +12,6 @@ def computeTF(wordDict):
         for key,val in wordDict.items():
                 tfDict[key] = val/float(wordcount)
         return tfDict
-
 
 #Function to compute Inverse Document Frequency
 def computeIDF(docList):
@@ -28,14 +26,12 @@ def computeIDF(docList):
         idfDict[word] = math.log10(N / float(val))
     return idfDict
 
-
 #Function to compute  Tf-Idf Matrix
 def computeTFIDF(tfs, idfs):
     tfidf = {}
     for word,val in tfs.items():
         tfidf[word] = val*idfs[word]
     return tfidf
-
 
 # Sample Data
 s1_text="A mathematician found a solution to the problem"
@@ -76,7 +72,6 @@ print(computeTF(s2_dict))
 doc_list=[s1_dict,s2_dict]
 print("IDF in General")
 print(computeIDF(doc_list))
-
 
 #Build Tf-Idf matrix
 tf_idf_vector=[]
