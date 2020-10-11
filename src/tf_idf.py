@@ -2,6 +2,25 @@
 
 #Importing necessary libraries
 import math
+# import nltk
+import os
+from nltk.stem.porter import PorterStemmer
+from nltk.tokenize import sent_tokenize, word_tokenize
+
+
+def preprocess_data(document):
+	'''
+	Given a document, generate terms, stem the terms and generate tokens.
+	'''
+	stemmer = PorterStemmer()
+	words = [word for sentence in sent_tokenize(document) for word in word_tokenize(sentence)]
+	terms = [stemmer.stem(word).lower() for word in words]
+	return terms
+
+
+ans = preprocess_data("A mathematician found a solution to the problem")
+print(ans)
+
 
 #Function to compute Term Frequency
 def computeTF(wordDict):

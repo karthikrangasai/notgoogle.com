@@ -37,5 +37,6 @@ fi
 source "env/bin/activate"
 
 pip install -r requirements.txt
-
+mkdir env/lib/nltk_data
+python -c "import nltk ; nltk.download('putnk', download_dir=os.path.join(os.getcwd(), \"env/lib/nltk_data\"))"
 # pip freeze > requirements.txt
