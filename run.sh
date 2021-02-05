@@ -5,4 +5,9 @@
 
 source env/bin/activate
 
+echo "[INFO] Starting the tf_idf indexer to generate inverted index."
+python src/tf_idf_indexer.py
+echo "[INFO] Running the Flask Application"
 python app.py
+
+deactivate

@@ -5,15 +5,168 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>notGoogle</title>
+		<style>
+			*,
+			body {
+				margin: 0;
+				padding: 0;
+			}
+
+			body {
+				color: blueviolet;
+				font-family: 'Poppins', sans-serif;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				min-height: 100vh;
+				font-size: 1.5rem;
+				background-color: #222222;
+			}
+
+			.search-engine {
+				width: 100vw;
+				height: 100vh;
+				display: flex;
+				justify-content: center;
+			}
+
+			.engine {
+				margin: 25vh 0;
+			}
+
+			.engine>h1 {
+				text-align: center;
+				font-size: 8rem;
+			}
+
+			.engine>form {
+				width: 50vw;
+				margin-top: 5vh;
+				display: flex;
+				flex-direction: column;
+			}
+
+			.form_group {
+				position: relative;
+				padding: 15px 0 0;
+				width: 60%;
+				display: flex;
+				justify-content: center;
+				margin: auto;
+			}
+
+			.engine>form>.form_group>.box {
+				font-family: inherit;
+				width: 70%;
+				border: 0;
+				border-bottom: 2px solid #9b9b9b;
+				outline: 0;
+				font-size: 1.3rem;
+				color: #fff;
+				background: transparent;
+				transition: border-color 0.2s;
+			}
+
+			.engine>form>.form_group>.box::placeholder {
+				color: transparent;
+			}
+
+			.engine>form>.form_group>.box:placeholder-shown~.form__label {
+				font-size: 1.3rem;
+				cursor: text;
+				top: 20px;
+			}
+
+			.engine>form>.form_group>.label {
+				position: relative;
+				top: 0;
+				display: block;
+				transition: 0.2s;
+				font-size: 1rem;
+				color: #9b9b9b;
+				width: 30%;
+			}
+
+			.engine>form>.form_group>.box:focus {
+				font-weight: 700;
+				border-width: 3px;
+				border-image-slice: 1;
+			}
+
+			.engine>form>.form_group>.box:focus~.form__label {
+				position: relative;
+				top: 0;
+				display: block;
+				transition: 0.2s;
+				font-size: 1rem;
+				color: #11998e;
+				font-weight: 700;
+			}
+
+			/* reset input */
+			.engine>form>.form_group>.box:required,
+			.engine>form>.form_group>.box:invalid {
+				box-shadow: none;
+			}
+
+			.engine>form>.btn {
+				display: flex;
+				justify-content: center;
+				margin: 4vh;
+			}
+
+			.engine>form>.btn>.button {
+				border-radius: 5px;
+				font-size: 20px;
+				padding: 10px 50px;
+				cursor: pointer;
+				color: #222222;
+				background-color: #FFFFFF;
+				font-size: 1.5rem;
+				font-family: 'Roboto';
+				font-weight: 100;
+				border: 1px solid #fff;
+				box-shadow: 0px 0px 2px #FFFFFF;
+				transition-duration: 0.5s;
+				-webkit-transition-duration: 0.5s;
+				-moz-transition-duration: 0.5s;
+			}
+
+			.engine>form>.btn>.button:hover {
+				color: #FFFFFF;
+				background-color: #222222;
+				border: 1px solid linear-gradient(to right, #11998e, #38ef7d);
+			}
+		</style>
 	</head>
 
 	<body>
-		<h1>notGoogle</h1>
-		<form action="search" method="post">
-			<label for="query">Enter Search Query: </label>
-			<input type="search" name="query" id="query">
-			<button type="submit">Search</button>
-		</form>
+		<div class="search-engine">
+			<div class="engine">
+				<h1>notGoogle</h1>
+				<form action="search" method="post">
+					<div class="form_group">
+						<label class="label" for="query">Enter Search Query: </label>
+						<input class="box" type="search" name="query" id="query" placeholder="Enter Search Query: "
+							autocomplete="off">
+					</div>
+					<div class="form_group">
+						<label class="label" for="smart">Choose Scoring Scheme: </label>
+						<select id="smart" name="smart" aria-placeholder="Scoring Scheme">
+							<option value="n">Natural Term Frequency</option>
+							<option value="l">Logarithm Term Frequency</option>
+							<option value="a">Augmented Term Frequncy</option>
+							<option value="b">Boolean Term Frequency</option>
+						</select>
+					</div>
+					<div class="btn">
+						<button class="button" type="submit">Search</button>
+					</div>
+
+				</form>
+			</div>
+		</div>
 	</body>
 
 </html>
