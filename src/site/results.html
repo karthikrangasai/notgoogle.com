@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>notGoogle.com</title>
+		<style>
+			*,
+			body {
+				margin: 0;
+				padding: 0;
+			}
+
+			body {
+				color: blueviolet;
+				font-family: 'Poppins', sans-serif;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				/* min-height: 100vh; */
+				/* font-size: 1.5rem; */
+				background-color: #222222;
+			}
+
+			.container {
+				width: 90vw;
+				margin: auto;
+			}
+
+			.content {
+				width: 70vw;
+				display: flex;
+				justify-content: center;
+				flex-direction: column;
+				margin: 5vh auto 0 auto;
+			}
+
+			.content>.heading {
+				text-align: center;
+				margin: 3rem 0;
+				font-size: 3rem;
+			}
+
+			.content>.alert {
+				text-align: center;
+				margin: 1rem 0;
+				font-size: 1rem;
+				color: red;
+			}
+
+			.content>.movies {
+				width: 40vw;
+				display: flex;
+				justify-content: center;
+				flex-direction: column;
+				margin: auto;
+			}
+
+			.content>.movies>.movie {
+				width: 60%;
+				display: flex;
+				justify-content: center;
+				flex-direction: column;
+				margin: 1rem auto;
+				padding: 1rem;
+				height: 4rem;
+				background-color: white;
+				color: #222222;
+			}
+
+			.content>.movies>.movie>.line-1 {
+				width: 100%;
+				display: flex;
+				justify-content: space-between;
+				flex-direction: row;
+				margin: auto;
+			}
+
+			.content>.movies>.movie>.line-2 {
+				width: 100%;
+				display: flex;
+				justify-content: space-between;
+				flex-direction: row;
+				margin: auto;
+			}
+
+			.engine>form>.btn {
+				display: flex;
+				justify-content: center;
+				margin: 4vh;
+			}
+
+			.content>form {
+				display: flex;
+				justify-content: center;
+				margin: 2vh;
+			}
+
+			.content>form>.button {
+				border-radius: 5px;
+				font-size: 20px;
+				padding: 10px 50px;
+				cursor: pointer;
+				color: #222222;
+				background-color: #FFFFFF;
+				font-size: 1.5rem;
+				font-family: 'Roboto';
+				font-weight: 100;
+				border: 1px solid #fff;
+				box-shadow: 0px 0px 2px #FFFFFF;
+				transition-duration: 0.5s;
+				-webkit-transition-duration: 0.5s;
+				-moz-transition-duration: 0.5s;
+			}
+
+			.content>form>.button:hover {
+				color: #FFFFFF;
+				background-color: #222222;
+				border: 1px solid linear-gradient(to right, #11998e, #38ef7d);
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="content">
+				<h1 class="heading">Query: {{ content.text }}</h1>
+				{% if content.movies.correct_query != "" %}
+				<h4 class="alert">{{ content.movies.correct_query }}</h4>
+				{% endif %}
+
+				{% if content.movies.query_error != "" %}
+				<h4 class="alert">{{ content.movies.query_error }}</h4>
+				{% endif %}
+
+				{% for movie in content.movies.movies %}
+				<div class="movies">
+					<div class="movie">
+						<div class="line-1">
+							<div class="name">{{ content.movies.movies[movie].name }}</div>
+							<div class="score"> Similarity Score:
+								{{'%0.6f' | format(content.movies.movies[movie].score) }}
+								<!-- {{ content.movies.movies[movie].score }} -->
+							</div>
+						</div>
+						<div class="line-2">
+							<div class="year">Year: {{ content.movies.movies[movie].year }}</div>
+							<div class="rating">IMDB Rating: {{ content.movies.movies[movie].rating }}</div>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+				<form action="/" method="get">
+					<button class="button" type="submit">Home</button>
+				</form>
+			</div>
+		</div>
+
+	</body>
+
+</html>
