@@ -13,16 +13,23 @@ else
 	echo -e "\e[0mYes."
 fi
 
+mkdir datasets
+mkdir datasets/pickle_files
+
 # Check for dataset
-# echo -ne "\e[1m>> Checking if dataset is present: "
-# DATASET=./Cell_Phones_and_Accessories_5.json.gz
-# if [[ -f "$DATASET" ]]
-# then
-# 	echo -e "\e[0mYes."
-# else
-# 	echo -e "\e[0mNo.\nStarting Download"
-# 	wget http://deepyeti.ucsd.edu/jianmo/amazon/categoryFilesSmall/Cell_Phones_and_Accessories_5.json.gz
-# fi
+echo -ne "\e[1m>> Checking if dataset is present: "
+DATASET=./src/datasets/cornell_movie_dialogs_corpus.zip
+if [[ -d "$DATASET" ]]
+then
+	echo -e "\e[0mYes."
+else
+	echo -e "\e[0mNo.\nStarting Download"
+	wget http://www.cs.cornell.edu/~cristian/data/cornell_movie_dialogs_corpus.zip
+	mv cornell_movie_dialogs_corpus.zip ./src/datasets/cornell_movie_dialogs_corpus.zip
+	cd ./src/datasets/
+	unzip cornell_movie_dialogs_corpus.zip
+	cd ../../
+fi
 
 # Check for virtual environment
 echo -ne "\e[1m>> Checking if virtual environment is present: "
@@ -38,5 +45,9 @@ source "env/bin/activate"
 
 pip install -r requirements.txt
 mkdir env/lib/nltk_data
-python -c "import nltk ; nltk.download('putnk', download_dir=os.path.join(os.getcwd(), \"env/lib/nltk_data\"))"
-# pip freeze > requirements.txt
+python -c "import os ; import nltk ; nltk.download('putnk', download_dir=os.path.join(os.getcwd(), \"env/lib/nltk_data\"))"
+python -c "import os ; import nltk ; nltk.download('stopwords', download_dir=os.path.join(os.getcwd(), \"env/lib/nltk_data\"))"
+python -c "import os ; import nltk ; nltk.download('wordnet', download_dir=os.path.join(os.getcwd(), \"env/lib/nltk_data\"))"
+
+python setup.py
+deactivate
