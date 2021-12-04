@@ -56,3 +56,8 @@ This is search engine built using Vector Space Model on the <strong>Cornell Movi
 
 
 ```
+
+# Team
+- [Karthik Rangasai Sivaraman](https://github.com/karthikrangasai)
+- [Gaurav Mehta](https://github.com/gauravzero)
+- [Shanmukh Kali Prasad](https://github.com/pskalip)
